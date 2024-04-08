@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetic Retinopathy Detection</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS styles */
+    .jumbotron {
+      background-image: url("{{ url_for('static', filename='bg.jpg') }}"); /* Replace 'background-image.jpg' with your actual background image */
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 0;
+    }
+    .feature-box {
+      background-color: #f8f9fa;
+      padding: 50px 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Diabetic Retinopathy Detection</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" style="width: 100px;">
+        <button type="button" id="signup-btn" class="btn btn-primary">Sign Up</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" id="signin-btn" class="btn btn-info">Sign In</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Jumbotron Section -->
+<div class="jumbotron">
+  <h1 class="display-4">Diabetic Retinopathy Detection</h1>
+  <p class="lead">Detect the severity of Diabetic Retinopathy with fundus images.</p>
+</div>
+
+<!-- Features Section -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="feature-box">
+        <h3>Upload Fundus Images</h3>
+        <p>Upload your fundus images for analysis.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="feature-box">
+        <h3>Instant Analysis</h3>
+        <p>Get instant analysis and severity level of Diabetic Retinopathy.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="feature-box">
+        <h3>Secure and Private</h3>
+        <p>Your data is secure and kept private.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container">
+  <h2 class="text-center mt-5">Frequently Asked Questions</h2>
+  <div class="accordion" id="faqAccordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            What is Diabetic Retinopathy?
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+        <div class="card-body">
+          Diabetic retinopathy is a diabetes complication that affects eyes. It's caused by damage to the blood vessels of the light-sensitive tissue at the back of the eye (retina).
+        </div>
+      </div>
+    </div>
+    <!-- Add more FAQ items here -->
+  </div>
+</div>
+
+<!-- Educational Content Section -->
+<div class="container">
+  <h2 class="text-center mt-5">Educational Content</h2>
+  <p>This section can contain educational content related to Diabetic Retinopathy. You can include articles, videos, or infographics.</p>
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-light text-center py-4 mt-5">
+  <p>&copy; 2024 Diabetic Retinopathy Detection</p>
+</footer>
+
+<script>
+    // Get the "Sign Up" button element
+    var signupBtn = document.getElementById('signup-btn');
+
+    // Add click event listener to the "Sign Up" button
+    signupBtn.addEventListener('click', function() {
+        // Redirect the user to the signup page
+        window.location.href = "/signup"; // Replace "/signup" with the actual route of your signup page
+    });
+
+    var signinBtn = document.getElementById('signin-btn');
+
+    // Add click event listener to the "Sign Up" button
+    signinBtn.addEventListener('click', function() {
+        // Redirect the user to the signup page
+        window.location.href = "/login"; // Replace "/signup" with the actual route of your signup page
+    });
+
+</script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
