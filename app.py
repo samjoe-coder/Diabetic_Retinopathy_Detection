@@ -12,7 +12,25 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        print(name, email, password)
+        return render_template('home.html')
+
+
+
+
+
+
+
+
+    return render_template('signup.html')
 
 @app.route('/predict', methods=['POST'])
 def drPredict():
