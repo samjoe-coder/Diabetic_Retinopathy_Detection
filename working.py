@@ -1,8 +1,7 @@
-from flask import Flask, request, render_template, send_file
+from flask import Flask, request, render_template
 from tensorflow.keras.models import Model
 import os
 from model.drModel import predict, load_model
-from report.pdfReport import generate_pdf_report
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -16,6 +15,7 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def drPredict():
+
     if 'image' not in request.files:
         return 'No file part', 400
     
@@ -37,12 +37,8 @@ def drPredict():
         imageToPredict = os.path.join(app.config['UPLOAD_FOLDER'], drImage.filename)
         result = predict(imageToPredict, model)
 
-        # Generate PDF report
-        pdf_filename = generate_pdf_report(imageToPredict, result)
-
-        # Return the PDF file to the user
-        return send_file(pdf_filename, as_attachment=True)
-
+        return result 
+       
     return 'Error in prediction', 400
 
 if __name__ == '__main__':
