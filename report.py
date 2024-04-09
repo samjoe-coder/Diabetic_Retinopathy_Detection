@@ -22,3 +22,5 @@ def generate_pdf_report(image, result, filename):
 
     # Build the PDF
     doc.build(content)
+
+    return pdf_filename

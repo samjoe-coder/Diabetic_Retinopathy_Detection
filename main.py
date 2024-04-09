@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for, session
+from flask import request, render_template, redirect, url_for, session, send_file
 from config import app, db
 from models import User, Prediction, Report
 import os
@@ -6,6 +6,7 @@ from uniqueCode import generate_unique_code
 from tensorflow.keras.models import Model
 from detection_model.drModel import predict, load_model
 from report import generate_pdf_report
+from emails import send_email
 
 @app.route('/', methods=['GET'])
 def index():
@@ -21,6 +22,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         session['user_id'] = user.id
+        session['email'] = user.email
         return redirect(url_for('prediction'))
     return render_template('signup.html')
 
@@ -32,6 +34,7 @@ def login():
         user = User.query.filter_by(email=email, password=password).first()
         if user:
             session['user_id'] = user.id
+            session['email'] = user.email
             return redirect(url_for('prediction'))
     return render_template('login.html')
 
@@ -71,9 +74,14 @@ def prediction():
             db.session.add(prediction)
             db.session.commit()
 
-            # Generate PDF report
-            generate_pdf_report(imageToPredict, result, code)
+            pdf_filename = generate_pdf_report(imageToPredict, result, code)
             
+            report = Report(prediction_id=prediction.id, user_id=session['user_id'], report=pdf_filename)
+            db.session.add(report)
+            db.session.commit()
+            
+            user_email = session['email']
+            send_email(user_email, pdf_filename)
             
             return result
 
